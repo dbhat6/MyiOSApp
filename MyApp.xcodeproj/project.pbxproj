@@ -14,6 +14,7 @@
 		1A0102542A72A159000648AD /* MyAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0102532A72A159000648AD /* MyAppTests.swift */; };
 		1A01025E2A72A15A000648AD /* MyAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A01025D2A72A15A000648AD /* MyAppUITests.swift */; };
 		1A0102602A72A15A000648AD /* MyAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A01025F2A72A15A000648AD /* MyAppUITestsLaunchTests.swift */; };
+		1AD4BB492A7F9FFE007EB847 /* ExpiryTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD4BB482A7F9FFE007EB847 /* ExpiryTracker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +45,7 @@
 		1A0102592A72A15A000648AD /* MyAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A01025D2A72A15A000648AD /* MyAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAppUITests.swift; sourceTree = "<group>"; };
 		1A01025F2A72A15A000648AD /* MyAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		1AD4BB482A7F9FFE007EB847 /* ExpiryTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpiryTracker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +98,7 @@
 			children = (
 				1A0102422A72A158000648AD /* MyAppApp.swift */,
 				1A0102442A72A158000648AD /* ContentView.swift */,
+				1AD4BB482A7F9FFE007EB847 /* ExpiryTracker.swift */,
 				1A0102462A72A159000648AD /* Assets.xcassets */,
 				1A0102482A72A159000648AD /* Preview Content */,
 			);
@@ -257,6 +260,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1AD4BB492A7F9FFE007EB847 /* ExpiryTracker.swift in Sources */,
 				1A0102452A72A158000648AD /* ContentView.swift in Sources */,
 				1A0102432A72A158000648AD /* MyAppApp.swift in Sources */,
 			);
