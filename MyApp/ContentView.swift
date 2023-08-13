@@ -60,6 +60,17 @@ struct ContentView: View {
                                 .background(myBlackColor.opacity(0.4))
                                 .cornerRadius(15)
                         }
+                        
+                        NavigationLink {
+                            FormView()
+                        } label: {
+                            Text("Daily Tasks")
+                                .foregroundColor(.white)
+                                .fontWeight(.bold)
+                                .padding()
+                                .background(myBlackColor.opacity(0.4))
+                                .cornerRadius(15)
+                        }
                         Spacer()
                         Spacer()
                     }.padding()

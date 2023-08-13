@@ -10,6 +10,7 @@ import SwiftUI
 import UserNotifications
 
 struct ExpiryTrackerView: View {
+    @StateObject private var store = ExpiryDataStore()
     @State private var items = [ExpiryItem]()
     @State private var showingForm = false
     
@@ -34,18 +35,55 @@ struct ExpiryTrackerView: View {
                 }
             }
             .navigationBarTitle("Expiry Tracker")
+            .onAppear(perform: {
+                fetchItems()
+            })
         }
     }
     
-    func addItem(name: String, expiryDate: Date) {
+    func fetchItems() {
+        async {
+            do {
+                try await store.load()
+            } catch {
+                print("Error fetching expiry items: \(error)")
+            }
+        }
+    }
+    
+    func addItem(name: String, expiryDate: Date) async {
         let newItem = ExpiryItem(name: name, expiryDate: expiryDate) // Replace this with the actual expiry date of the item
         items.append(newItem)
         
         // Schedule a notification for the expiry date
-        scheduleNotification(for: newItem)
+        checkForPermission(for: newItem)
+        do {
+            try await store.save(items: items)
+        } catch {
+            print("Caught an error here \(error)")
+        }
+        
     }
     
-    
+    func checkForPermission(for item: ExpiryItem) {
+        let notificationCenter = UNUserNotificationCenter.current()
+        notificationCenter.getNotificationSettings { settings in
+            switch settings.authorizationStatus {
+            case .authorized:
+                self.scheduleNotification(for: item)
+            case .denied:
+                return
+            case .notDetermined:
+                notificationCenter.requestAuthorization(options: [.alert, .sound]) { didAllow, error in
+                    if didAllow {
+                        self.scheduleNotification(for: item)
+                    }
+                }
+            default:
+                return
+            }
+        }
+    }
     
     
     private func scheduleNotification(for item: ExpiryItem) {
@@ -102,7 +140,7 @@ struct ExpiryTrackerView_Previews: PreviewProvider {
 
 
 
-struct ExpiryItem: Identifiable {
+struct ExpiryItem: Identifiable, Encodable, Decodable {
     let id = UUID()
     let name: String
     let expiryDate: Date
